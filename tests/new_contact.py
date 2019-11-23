@@ -12,10 +12,10 @@ def app(request):
 
 
 def test_new_contact(app):
-    app.log_in(username="admin", user_password="secret")
+    app.session.log_in(username="admin", user_password="secret")
     app.add_new_contact(Contact(first_name="Preved!", middle_name="Bonjour!", last_name="Zdarova!", nickname="Gutentag!", title="Bonapetit",
                              company="Carambol", address="Bodybuild", home_phone="Copperwire", mobile_phone="Budapest",
                              work_phone="Brandenburg", fax="Brontozavr", email="Kremdlyaruk@mail.com", bday="10", bmonth="May",
                              byear="1970", aday="10", amonth="May", ayear="2020", address2="Bodyguard", phone2="Cyberpunk",
                              notes="Hello!"))
-    app.log_out()
+    app.session.log_out()
