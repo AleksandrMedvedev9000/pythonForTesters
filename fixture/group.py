@@ -32,6 +32,7 @@ class GroupHelper:
         self.open_group_page()
         self.select_first_group()
         wd.find_element_by_name("delete").click()
+<<<<<<< HEAD
         self.open_group_page()
 
     def select_first_group(self):
@@ -46,3 +47,6 @@ class GroupHelper:
         self.fill_group_fields(group)
         wd.find_element_by_name("update").click()
         self.open_group_page()
+=======
+        self.open_group_page()
+>>>>>>> parent of e886393... Тесты на создание, модификацию и удаление групп и контактов

@@ -52,6 +52,7 @@ class ContactHelper:
 
     def open_create_contact_page(self):
         wd = self.app.wd
+<<<<<<< HEAD
         wd.find_element_by_link_text("add new").click()
 
     def delete_first(self):
@@ -69,3 +70,6 @@ class ContactHelper:
         self.fill_contact_fields(contact)
         wd.find_element_by_name("update").click()
         self.app.open_home_page()
+=======
+        wd.find_element_by_link_text("add new").click()
+>>>>>>> parent of e886393... Тесты на создание, модификацию и удаление групп и контактов
