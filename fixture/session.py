@@ -5,7 +5,9 @@ class SessionHelper:
 
     def log_out(self):
         wd = self.app.wd
+        wd.implicitly_wait(10)
         wd.find_element_by_link_text("Logout").click()
+        wd.implicitly_wait(10)
 
     def log_in(self, username, user_password):
         wd = self.app.wd
