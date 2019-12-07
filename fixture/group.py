@@ -10,7 +10,6 @@ class GroupHelper:
         self.fill_group_fields(group)
         wd.find_element_by_name("submit").click()
         self.open_group_page()
-        wd.find_element_by_link_text("Logout").click()
 
     def fill_group_fields(self, group):
         self.check_and_type("group_name", group.table_name)
