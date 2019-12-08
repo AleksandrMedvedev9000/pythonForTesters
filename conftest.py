@@ -8,17 +8,17 @@ def app(request):
     global fixture
     if fixture is None:
         fixture = Application()
-        fixture.session.log_in(username="admin", user_password="secret")
     else:
         if not fixture.is_valid():
             fixture = Application()
-            fixture.session.log_in(username="admin", user_password="secret")
+    fixture.session.ensure_log_in(username="admin", user_password="secret")
+    return fixture
 
 
 @pytest.fixture(scope = "session", autouse = True)
 def stop(request):
     def fin():
-        fixture.session.log_out()
+        fixture.session.ensure_log_out()
         fixture.destroy()
     request.addfinalizer(fin)
     return fixture
