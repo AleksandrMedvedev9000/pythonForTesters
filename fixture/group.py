@@ -10,7 +10,6 @@ class GroupHelper:
         self.fill_group_fields(group)
         wd.find_element_by_name("submit").click()
         self.open_group_page()
-        wd.find_element_by_link_text("Logout").click()
 
     def fill_group_fields(self, group):
         self.check_and_type("group_name", group.table_name)
@@ -47,3 +46,8 @@ class GroupHelper:
         self.fill_group_fields(group)
         wd.find_element_by_name("update").click()
         self.open_group_page()
+
+    def count(self):
+        wd = self.app.wd
+        self.open_group_page()
+        return len(wd.find_elements_by_name("selected[]"))
