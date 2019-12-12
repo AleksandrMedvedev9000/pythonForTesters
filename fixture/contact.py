@@ -69,3 +69,7 @@ class ContactHelper:
         self.fill_contact_fields(contact)
         wd.find_element_by_name("update").click()
         self.app.open_home_page()
+
+    def count(self):
+        wd = self.app.wd
+        return wd.find_element_by_id("search_count").text
