@@ -52,6 +52,8 @@ class ContactHelper:
 
     def open_create_contact_page(self):
         wd = self.app.wd
+        if wd.current_url.endswith("/edit.php") and len(wd.find_elements_by_name("submit")) > 0:
+            return
         wd.find_element_by_link_text("add new").click()
 
     def delete_first(self):
@@ -60,7 +62,7 @@ class ContactHelper:
         wd.find_element_by_name("selected[]").click()
         wd.find_element_by_xpath("(//input[@value='Delete'])").click()
         wd.switch_to_alert().accept()
-        self.app.open_home_page()
+        wd.find_element_by_link_text("home").click()
 
     def edit_first(self, contact):
         wd = self.app.wd
