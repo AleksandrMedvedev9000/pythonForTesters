@@ -51,11 +51,6 @@ class GroupHelper:
         wd.find_element_by_name("update").click()
         self.open_group_page()
 
-    def count(self):
-        wd = self.app.wd
-        self.open_group_page()
-        return len(wd.find_elements_by_name("selected[]"))
-
     def get_group_list(self):
         wd = self.app.wd
         self.open_group_page()
@@ -63,6 +58,6 @@ class GroupHelper:
         for element in wd.find_elements_by_css_selector("span.group"):
             text = element.text
             id = element.find_element_by_name("selected[]").get_attribute("value")
-            group_list.append(Group(table_name=text, id=id))
+            group_list.append(Group(table_name=text, table_id=id))
         return group_list
 
