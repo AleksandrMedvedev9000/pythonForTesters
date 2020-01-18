@@ -13,6 +13,7 @@ class ContactHelper:
         self.fill_contact_fields(contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.app.open_home_page()
+        self.contact_cash = None
 
     def fill_contact_fields(self, contact):
         self.check_and_type("firstname", contact.first_name)
@@ -64,6 +65,7 @@ class ContactHelper:
         wd.find_element_by_xpath("(//input[@value='Delete'])").click()
         wd.switch_to_alert().accept()
         wd.find_element_by_link_text("home").click()
+        self.contact_cash = None
 
     def edit_first(self, contact):
         wd = self.app.wd
@@ -72,19 +74,23 @@ class ContactHelper:
         self.fill_contact_fields(contact)
         wd.find_element_by_name("update").click()
         self.app.open_home_page()
+        self.contact_cash = None
 
     def count(self):
         wd = self.app.wd
         self.app.open_home_page()
         return wd.find_element_by_id("search_count").text
 
+    contact_cash = None
+
     def get_contacts_list(self):
-        wd = self.app.wd
-        self.app.open_home_page()
-        contact_list = []
-        for element in wd.find_elements_by_name("entry"):
-            last_name = element.find_element_by_css_selector("td:nth-child(2)").text
-            first_name = element.find_element_by_css_selector("td:nth-child(3)").text
-            contact_id = element.find_element_by_name("selected[]").get_attribute("id")
-            contact_list.append(Contact(first_name=first_name, last_name=last_name, id=contact_id))
-        return contact_list
+        if self.contact_cash is None:
+            wd = self.app.wd
+            self.app.open_home_page()
+            self.contact_cash = []
+            for element in wd.find_elements_by_name("entry"):
+                last_name = element.find_element_by_css_selector("td:nth-child(2)").text
+                first_name = element.find_element_by_css_selector("td:nth-child(3)").text
+                contact_id = element.find_element_by_name("selected[]").get_attribute("id")
+                self.contact_cash.append(Contact(first_name=first_name, last_name=last_name, id=contact_id))
+        return self.contact_cash
